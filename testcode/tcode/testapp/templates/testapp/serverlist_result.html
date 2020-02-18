@@ -1,0 +1,23 @@
+입력하신 제고정보는 아래와 같습니다<br/>
+<br/>
+제고정보를 정확히 확인해 주시기 바라며 누락된 제고리스트가 없는지<br/>
+<br/>
+다시한번 확인을 해주시기 바랍니다.
+<br/>
+<br/>
+<br/>
+{% for serverlist in serverlists %}
+    1. 보유자 이름 : {{ serverlist.name }} <br/>
+    2. 보유서버댓수 : {{ serverlist.server_count }}<br/>
+    3. 모델명 : {{ serverlist.model_name }}<br/>
+    4. 분류코드 : {{ serverlist.code }}<br>
+    5. 사용용도 : {{ serverlist.use_case }}<br/>
+    6. 입력일시 : {{ serverlist.created_date }}<br/> 
+    7. 등록일시 : {{ serverlist.published_date }}<br/>
+{% endfor %}
+<br/>
+<strong>제고관리 시스템을 이용해 주셔서 대단히 감사합니다.</strong>
+<br/>
+<br/>
+<a class="save btn-default" href="{% url 'serverlist' %}">처음으로</a>
+

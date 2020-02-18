@@ -1,0 +1,18 @@
+<strong>...개인재고 테스트서버 리스트 전체정보</strong>
+<br/>
+<br/>
+<br/>
+{% for serverlist in serverlists %}
+    1. 보유자 이름 : {{ serverlist.name }} <br/>
+    2. 보유서버댓수 : {{ serverlist.server_count }}<br/>
+    3. 모델명 : {{ serverlist.model_name }}<br/>
+    4. 분류코드 : {{ serverlist.code }}<br>
+    5. 사용용도 : {{ serverlist.use_case }}<br/>
+    6. 입력일시 : {{ serverlist.created_date }}<br/> 
+    7. 등록일시 : {{ serverlist.published_date }}<br/>
+<br/>
+<br/>
+{% endfor %}
+<br/>
+<a class="save btn-default" href="{% url 'serverlist' %}">처음으로</a>
+

@@ -1,0 +1,25 @@
+{% block content %}
+...아래의 양식에 맞추어 서버실에 보유하고 계시는 서버의 정보를 입력해 주세요<br/>
+<br/>
+분류코드의 경우 따로 경영지원팀으로 부터 받은 분류코드가 없으실 경우 소유자 이름을 대신 입력해 주세요<br/>
+로그아웃 하시러면 아래의 "로그아웃하기" 버튼을 클릭해 주세요<br/>
+<br/>
+<a class="" href="/join/logout"><strong>로그아웃하기</strong></a>
+<br/>
+<br/>
+<strong>작성방법</strong>
+<br/>
+<br/>
+...Name : 소유자 이름<br/>
+...Team : 소속부서<br/>
+...Server Count : 서버 댓수<br/>
+...Model Name : 서버 모델명, 제조사<br/>
+...Code : 분류코드(회사지정분류코드) - 코드 없을경우 본인 이름 입력<br/>
+...Use Case : 사용용도<br/>
+<br/>
+<br/>
+<form method="POST" class="join-form">{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="save btn-default">입력하기</button>
+</form>
+{% endblock %}
