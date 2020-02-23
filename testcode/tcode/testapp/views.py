@@ -76,6 +76,11 @@ def serverlist_all(request):
     return render(request, 'testapp/serverlist_all.html', {'serverlists':serverlists})
 
 
+def MyServer(request):
+    serverlists = Serverlist.objects.all()
+    return render(request, 'testapp/mylist.html', {'serverlists':serverlists})
+
+
 
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
@@ -84,6 +89,7 @@ def serverall(request):
     serverlists = Serverlist.objects.all()
     serverlisting = serializers.serialize('json',serverlists)
     return HttpResponse(serverlisting, content_type="text/json-comment-filtered")
+
 
 
 

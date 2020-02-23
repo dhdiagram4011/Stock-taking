@@ -105,3 +105,4 @@ def RegisterResult(request):
 def Login_success(request):
     userlists = User.objects.all().order_by('-id')[:1]
     return render(request, 'stock_member/stock_login_success.html', {'userlists':userlists})
+
