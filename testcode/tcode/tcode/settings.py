@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions', ##세션저장기능
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'testapp',
@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware', ##세션저장
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -74,7 +74,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request', #template 에서 세션 사용
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -149,7 +149,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 ##로그인 후 이동경로(서버 제고조사 페이지로 이동)
 from django.urls import reverse_lazy
-LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/stock_member/login_success'
+LOGIN_REDIRECT_URL = '/stock_member/home'
 
 
 #API Document

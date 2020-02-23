@@ -10,6 +10,8 @@ from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from django.core.mail import EmailMessage
+from django.contrib.auth.hashers import check_password
+
 
 def mailer():
     userlists = User.objects.all().order_by('-id')[:1]
@@ -37,9 +39,61 @@ def register(request):
         return render(request, 'stock_member/stock_register.html', {'form':form})
 
 
-@login_required()
-def login_success(request):
-    return render(request, 'stock_member/stock_login_success.html')
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'stock_member/stock_login.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+    res_data = {}
+    if not (username and password):
+        res_data['error']  = "모든 정보를 정확히 입력하여 주세요"
+    else:
+        fuser = User.objects.get(username=username)
+
+        if check_password(password, fuser.password):
+            request.session['user'] = fuser.id
+            return redirect('/home')
+        else:
+            res_data['error'] = "비밀번호가 맞지 않습니다"
+
+    return render(request, 'stock_member/stock_login.html', res_data)
+
+
+def home(request):
+    user_pk = request.session.get('user')
+
+    if user_pk:
+        fuser = User.objects.get(pk=user_pk)
+        return HttpResponse(fuser.username)
+
+    return HttpResponse("로그인이 정상적으로 완료되었습니다")
+
+
+#def login_success(request):
+#    if request.method == 'GET':
+#        return render(request, 'stock_member/stock_login_success.html')
+#    elif request.method == 'POST':
+#        username = request.POST.get('username')
+#        password = request.POST.get('password')
+
+#    res_data = {}
+#    if not (username and password):
+#        res_data['error']  = "모든 정보를 정확히 입력하여 주세요"
+#    else:
+#        fuser = User.objects.get(username=username)
+
+#        if check_password(password, fuser.password):
+#            request.session['user']=fuser.id
+
+#            #return render(request, 'stock_member/stock_login_success.html')
+#            return redirect('/home')
+#        else:
+#            res_data['error'] = "비밀번호가 맞지 않습니다"
+
+#    return render(request, 'stock_member/stock_login.html', res_data)
 
 
 @login_required()

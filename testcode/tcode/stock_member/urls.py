@@ -6,7 +6,9 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('register_success/', RegisterResult, name='RegisterResult'),
     path('login/', LoginView.as_view(template_name='stock_member/stock_login.html'), name='login'),
+    #path('login/', login, name='login'),
     path('logout/', LogoutView.as_view(template_name='stock_member/stock_logout.html'), name='logout'),
     path('userlist/', Userlist, name='Userlist'),
-    path('login_success/', login_success, name='login_success'),
+    #path('login_success/', login_success, name='login_success'),
+    path('home/', home, name='home')
 ]
