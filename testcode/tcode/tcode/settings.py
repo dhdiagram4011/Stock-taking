@@ -32,7 +32,7 @@ SECRET_KEY = '%=xu-!$s6p7juqewfd(nmq4l&0*w(r&j6g43=(np+e&)#!%((w'
 DEBUG = True
 #DEBUG = False
 
-ALLOWED_HOSTS = ['*','toy.dhdiagram.net']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,25 +88,25 @@ WSGI_APPLICATION = 'tcode.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
-
-## GCP CloudSQL - Mysql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME':'djangoapp',
-        'USER':'django-app',
-        'PASSWORD':'k20504003',
-        'HOST': '34.69.28.26',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+## GCP CloudSQL - Mysql
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'NAME':'djangoapp',
+#        'USER':'django-app',
+#        'PASSWORD':'k20504003',
+#        'HOST': '34.69.28.26',
+#        'PORT':'3306',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

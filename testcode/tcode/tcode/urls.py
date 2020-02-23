@@ -25,7 +25,7 @@ admin.site.site_header = 'Inventory-information-collection-function & Join_membe
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('testapp.urls')), #applicaton url
-    path('join/', include('join_membership.urls')),
+    path('stock_member/', include('stock_member.urls')),
     path('api/doc/', get_swagger_view(title='serverlist api manual')), ##swagger api document url
     path('api/getToken/', views.obtain_auth_token),
     path('api/token/', obtain_jwt_token), ##토큰발급

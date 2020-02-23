@@ -1,0 +1,15 @@
+...회원목록
+<br/>
+<br/>
+{% for userlist in userlists %}
+    가입아이디 : {{ userlist.username }}<br/>
+    소속부서 : {{ userlist.depart }}<br/>
+    직급 : {{ userlist.position }}<br/>
+    핸드폰 : {{ userlist.phone }}<br/>
+    근무층수 : {{ userlist.floor }}<br/>
+<br/>
+<br/>
+{% endfor %}
+<br/>
+<br/>
+
