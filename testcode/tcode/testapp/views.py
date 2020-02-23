@@ -14,6 +14,11 @@ from django.http import HttpResponse
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.views.generic.detail import DetailView
+
+
 def Sendmail():
     serverlists = Serverlist.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')[:1]
     title = "[제고등록]제고가 아래와 같이 등록되었습니다."
@@ -36,6 +41,7 @@ from .permissions import *
 
 ## 로그인 하지 않으면 페이지 접근 불가
 ###@login_required
+##제고입력
 def serverlist(request):
     if request.method == 'POST':
         form = ServerlistForm(request.POST)
@@ -60,6 +66,7 @@ def serverlist(request):
 
 
 ## 로그인 하지 않으면 페이지 접근 불가
+## 입력 후 결과 화면 출력
 @login_required
 def serverlist_result(request):
     serverlists = Serverlist.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')[:1]
@@ -76,9 +83,17 @@ def serverlist_all(request):
     return render(request, 'testapp/serverlist_all.html', {'serverlists':serverlists})
 
 
+# 내가 입력한 재고정보 보여주기
 def MyServer(request):
     serverlists = Serverlist.objects.all()
     return render(request, 'testapp/mylist.html', {'serverlists':serverlists})
+
+
+class ServerUpdate(DetailView):
+    model = Serverlist
+    fields = ['server_count','model_name','use_case']
+    template_name = 'testapp/serverlist_modify.html'
+
 
 
 

@@ -150,7 +150,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 ##로그인 후 이동경로(서버 제고조사 페이지로 이동)
 from django.urls import reverse_lazy
 #LOGIN_REDIRECT_URL = '/stock_member/login_success'
-LOGIN_REDIRECT_URL = '/stock_member/login_success'
+LOGIN_REDIRECT_URL = '/stock_member/home'
 
 
 #API Document

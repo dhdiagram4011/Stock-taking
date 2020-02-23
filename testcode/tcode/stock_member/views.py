@@ -41,53 +41,53 @@ def register(request):
 
 
 
-
-#세션기반 로그인 인증
-#def login(request):
-#    if request.method == 'GET':
-#        return render(request, 'stock_member/stock_login.html')
-#    elif request.method == 'POST':
-#        username = request.POST.get('username')
-#        password = request.POST.get('password')
-
-#    res_data = {}
-#    if not (username and password):
-#        res_data['error']  = "모든 정보를 정확히 입력하여 주세요"
-#    else:
-#        fuser = User.objects.get(username=username)
-
-#        if check_password(password, fuser.password):
-#            request.session['username'] = fuser.id
-#            return redirect('/stock_member/home')
-#        else:
-#            res_data['error'] = "비밀번호가 맞지 않습니다"
-
-#    return render(request, 'stock_member/stock_login.html', res_data)
-
-
-#def home(request):
-#    user_pk = request.session.get('username')
-
-#    if user_pk:
-#        fuser = User.objects.get(pk=user_pk)
-#        return HttpResponse(fuser.username)
-
-#    return HttpResponse("로그인이 정상적으로 완료되었습니다")
-
-
-def save_session(request, username, password):
-    request.session['username'] = username
-    request.session['password'] = password
-
-
+###세션기반 로그인 인증
 def login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        if login_verification(username, password):
-            save_session(request, username, password)
-            return render(request, 'stock_member/stock_login_success.html')
+    if request.method == 'GET':
         return render(request, 'stock_member/stock_login.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+    res_data = {}
+    if not (username and password):
+        res_data['error']  = "모든 정보를 정확히 입력하여 주세요"
+    else:
+        fuser = User.objects.get(username=username)
+
+        if check_password(password, fuser.password):
+            request.session['user'] = fuser.id
+            return redirect('/stock_member/home')
+        else:
+            res_data['error'] = "비밀번호가 맞지 않습니다"
+
+    return render(request, 'stock_member/stock_login.html', res_data)
+
+
+def home(request):
+    user_pk = request.session.get('user')
+
+    if user_pk:
+        fuser = User.objects.get(pk=user_pk)
+        return HttpResponse(fuser.username + "님 사이트 방문을 환영합니다")
+    else:
+        return HttpResponse("로그인이 정상적으로 완료되었습니다")
+
+
+
+#def save_session(request, username, password):
+#    request.session['username'] = username
+#    request.session['password'] = password
+
+
+#def login(request):
+#   if request.method == 'POST':
+#        username = request.POST['username']
+#        password = request.POST['password']
+#        if login_verification(username, password):
+#            save_session(request, username, password)
+#            return render(request, 'stock_member/stock_login_success.html')
+#        return render(request, 'stock_member/stock_login.html')
 
 
 @login_required()

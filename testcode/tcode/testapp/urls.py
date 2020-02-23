@@ -11,5 +11,6 @@ urlpatterns  = [
     path('serverlisting/<int:pk>/', ServerlistDetail.as_view()),
     ##path('need_login/', need_login, name='need_login'),
     path('myserver/', MyServer, name='MyServer'),
+    path('serverupdate/', ServerUpdate.as_view(), name='serverupdate'),
 ]
 
