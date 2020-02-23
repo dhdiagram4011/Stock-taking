@@ -8,5 +8,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='stock_member/stock_login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='stock_member/stock_logout.html'), name='logout'),
     path('userlist/', Userlist, name='Userlist'),
-    path('', login_success, name='login_success'),
+    path('login_success/', login_success, name='login_success'),
 ]
