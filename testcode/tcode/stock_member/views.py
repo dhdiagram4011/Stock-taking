@@ -16,7 +16,7 @@ def mailer():
     title = "[제고관리시스템]제고관리 시스템 회원가입이 완료되었습니다."
     html_message = render_to_string('stock_member/stock_register_success.html', {'userlists':userlists})
     #email = EmailMessage(title, html_message, to=['rlaehgud21764011@gmail.com'])
-    email = EmailMessage(title, html_message, to=[User.email])
+    email = EmailMessage(title, html_message, to=['rlaehgud21764011@gmail.com'])
     email.content_subtype = "html"
     return email.send()
 
