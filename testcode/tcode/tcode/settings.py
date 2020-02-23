@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'testapp',
-    'join_membership',
     'rest_framework',
     'rest_framework.authtoken', #api 토큰인증
     'rest_framework_swagger',
     'import_export',
+    'stock_member', #회원가입
 ]
 
 MIDDLEWARE = [
@@ -182,4 +182,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'rlaehgud21764011@gmail.com'
 EMAIL_HOST_PASSWORD = '08425256@kdh'
 EMAIL_USE_TLS = True
+
+
+#User Model Customizing
+AUTH_USER_MODEL = 'stock_member.User'
+
 

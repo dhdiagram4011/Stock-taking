@@ -1,8 +1,11 @@
-** 가입하신 정보는 아래와 같습니다
+<strong>제고관리 시스템 회원가입이 완료되었습니다</strong><br/>
 <br/>
 <br/>
 {% block content %}
 <div class="alert alert-success">{{new_user.username}}님! 가입을 환영합니다</div>
 <br>
+<strong>가입하신 정보는 아래와 같습니다.</strong><br/>
+*가입아이디 : {{ new_user.username }}<br/>
+<br/>
 <a href="{% url 'login' %}" class="">로그인 페이지로 이동</a>
 {% endblock %}
