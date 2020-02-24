@@ -60,8 +60,8 @@ def login(request):
             auth.login(request, user)
             if request.POST.get("keep_login") == "TRUE":
                 response = render(request, 'stock_member/stock_login_success.html')
-                response.set_cookie('username',username)
-                response.set_cookie('password',password)
+                response.set_cookie('username' , username)
+                response.set_cookie('password' , password)
                 return response
             return redirect("/stock_member/home")
         else:
@@ -69,7 +69,7 @@ def login(request):
     else:
         form = LoginForm()
         return render(request, 'stock_member/stock_login.html', {'form':form})
-    return redner(request, 'stock_member/stock_login.html')
+    return render(request, 'stock_member/stock_login.html')
 
 
 
