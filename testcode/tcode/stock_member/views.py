@@ -88,6 +88,7 @@ def login(request):
         res_data['error']  = "모든 정보를 정확히 입력하여 주세요"
     else:
         fuser = User.objects.get(username=username)
+        #fuser = User.objects.all()
 
         if check_password(password, fuser.password):
             request.session['username'] = fuser.id
@@ -103,8 +104,8 @@ def home(request):
 
     if user_pk:
         fuser = User.objects.get(pk=user_pk)
-        return HttpResponse(fuser.username + "님 사이트 방문을 환영합니다")
-        #return render(request, 'stock_member/stock_login_success.html')
+        #return HttpResponse(fuser.username + "님 사이트 방문을 환영합니다")
+        return render(request, 'stock_member/stock_login_success.html')
     else:
         #return HttpResponse("로그인이 정상적으로 완료되었습니다")
         return render(request, 'stock_memeber/stock_login_success.html')
