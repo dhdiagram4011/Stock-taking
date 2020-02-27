@@ -131,9 +131,10 @@ def myinfo(request):
             "연락처 :  " + myprofile.phone + '<br/>'
             "근무층수 :  " + str(myprofile.floor) + '<br/>'
             "직책 : " + myprofile.position + '<br/>'
+            "성 : " + myprofile.first_name + '<br/>'
+            "이름 : " + myprofile.last_name + '<br/>'
+
         )
-
-
 
 #def save_session(request, username, password):
 #    request.session['username'] = username
