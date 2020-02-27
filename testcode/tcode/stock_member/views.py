@@ -126,6 +126,7 @@ def myinfo(request):
     if myprofile_pk:
         myprofile = User.objects.get(pk=myprofile_pk)
         return HttpResponse(
+            "아이디 :  " + myprofile.username + '<br/>'
             "이메일 :  " + myprofile.email + '<br/>'
             "부서 :  " + myprofile.depart + '<br/>'
             "연락처 :  " + myprofile.phone + '<br/>'
