@@ -1,0 +1,15 @@
+<strong>나의 가입정보는 아래와 같습니다</strong>
+<br/>
+{% for userinfo in userinfos %}
+<br/>
+    아이디: {{ userinfo.username }}<br/>
+    이메일: {{ userinfo.email }}<br/>
+    성: {{ userinfo.first_name }}<br/>
+    이름: {{ userinfo.last_name }}<br/>
+    부서: {{ userinfo.depart }}<br/>
+    직급: {{ userinfo.position }}<br/>
+    연락처: {{ userinfo.phone }}<br/>
+    근무위치: {{ userinfo.floor }}<br/>
+    <br/>
+    <br/>
+{% endfor %}

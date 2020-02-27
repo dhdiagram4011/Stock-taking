@@ -104,11 +104,35 @@ def home(request):
 
     if user_pk:
         fuser = User.objects.get(pk=user_pk)
-        return HttpResponse(fuser.username + "님 사이트 방문을 환영합니다")
+        return HttpResponse(
+            fuser.username + "님 사이트 방문을 환영합니다"'<br/>'
+            '<br/>'
+            '<a class ="" href="/stock_member/logout"> <strong>로그아웃하기</strong></a><br/>'
+            '<a class ="" href="/"><strong>제고입력바로가기</strong></a><br/>'
+            '<a class ="" href="/stock_member/myserver" > <strong> 나의 제고현황 보기</strong></a><br/>'
+            '<a class ="" href="/stock_member/myinfo" > <strong>개인정보바로가기</strong></a><br/>'
+
+
+        )
         #return render(request, 'stock_member/stock_login_success.html')
     else:
         #return HttpResponse("로그인이 정상적으로 완료되었습니다")
         return render(request, 'stock_memeber/stock_login_success.html')
+
+## 나의정보 바로가기
+def myinfo(request):
+    myprofile_pk = request.session['username']
+
+    if myprofile_pk:
+        myprofile = User.objects.get(pk=myprofile_pk)
+        return HttpResponse(
+            "이메일 :  " + myprofile.email + '<br/>'
+            "부서 :  " + myprofile.depart + '<br/>'
+            "연락처 :  " + myprofile.phone + '<br/>'
+            "근무층수 :  " + str(myprofile.floor) + '<br/>'
+            "직책 : " + myprofile.position + '<br/>'
+        )
+
 
 
 #def save_session(request, username, password):
