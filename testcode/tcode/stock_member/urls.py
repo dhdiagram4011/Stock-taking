@@ -16,4 +16,5 @@ urlpatterns = [
     path('login_success/', Login_success, name='Login_success'),
     path('home/', home, name='home'),
     path('myinfo/', myinfo, name='myinfo'),
+    path('getout/', getout, name='getout'),
 ]

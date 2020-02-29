@@ -99,6 +99,7 @@ def login(request):
     return render(request, 'stock_member/stock_login.html', res_data)
 
 
+#로그인 후 회원정보 보여주기
 def home(request):
     user_pk = request.session['username']
 
@@ -111,6 +112,7 @@ def home(request):
             '<a class ="" href="/"><strong>제고입력바로가기</strong></a><br/>'
             '<a class ="" href="/stock_member/myserver" > <strong> 나의 제고현황 보기</strong></a><br/>'
             '<a class ="" href="/stock_member/myinfo" > <strong>개인정보바로가기</strong></a><br/>'
+            '<a class ="" href="/stock_member/getout" > <strong>회원탈퇴하기</strong></a><br/>'
 
 
         )
@@ -118,6 +120,7 @@ def home(request):
     else:
         #return HttpResponse("로그인이 정상적으로 완료되었습니다")
         return render(request, 'stock_memeber/stock_login_success.html')
+
 
 ## 나의정보 바로가기
 def myinfo(request):
@@ -136,6 +139,20 @@ def myinfo(request):
             "이름 : " + myprofile.last_name + '<br/>'
 
         )
+
+#회원탈퇴
+def getout(request):
+    getout_pk = request.session['username']
+
+    if getout_pk:
+        getout_member = User.delete(pk=getout_pk)
+        ###getout_member.delete(pk=getout_pk)
+        return HttpResponse(
+            "아이디 : " + getout_member.username + '<br/>'
+            "위의 아이디로 회원탈퇴가 완료되었습니다. 재가입을 하시려면 아래의 가입하기 버튼을 클릭해 주세요" + '<br/>'
+            '<a class ="" href="/stock_member/register"> <strong>가입하기</strong></a><br/>'
+        )
+
 
 #def save_session(request, username, password):
 #    request.session['username'] = username
