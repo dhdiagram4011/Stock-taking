@@ -100,6 +100,7 @@ def login(request):
 
 
 #로그인 후 회원정보 보여주기
+###@login_required
 def home(request):
     user_pk = request.session['username']
 
@@ -123,6 +124,7 @@ def home(request):
 
 
 ## 나의정보 바로가기
+###@login_required
 def myinfo(request):
     myprofile_pk = request.session['username']
 
@@ -140,18 +142,26 @@ def myinfo(request):
 
         )
 
-#회원탈퇴
-def getout(request):
-    getout_pk = request.session['username']
+#회원탈퇴로직
+#def getout(request):
+#    getout_pk = request.session['username']
 
-    if getout_pk:
-        getout_member = User.delete(pk=getout_pk)
+#    if getout_pk:
+#        getout_member = User.delete(pk=getout_pk)
         ###getout_member.delete(pk=getout_pk)
-        return HttpResponse(
-            "아이디 : " + getout_member.username + '<br/>'
-            "위의 아이디로 회원탈퇴가 완료되었습니다. 재가입을 하시려면 아래의 가입하기 버튼을 클릭해 주세요" + '<br/>'
-            '<a class ="" href="/stock_member/register"> <strong>가입하기</strong></a><br/>'
-        )
+#        return HttpResponse(
+#            "아이디 : " + getout_member.username + '<br/>'
+#            "위의 아이디로 회원탈퇴가 완료되었습니다. 재가입을 하시려면 아래의 가입하기 버튼을 클릭해 주세요" + '<br/>'
+#            '<a class ="" href="/stock_member/register"> <strong>가입하기</strong></a><br/>'
+#        )
+
+
+###@login_required
+def getout(request):
+    #getout_pk = request.session['username']
+    if request.method == 'POST':
+        request.user.delete()
+    return render(request, 'stock_member/stock_member_delete.html')
 
 
 #def save_session(request, username, password):
@@ -170,7 +180,7 @@ def getout(request):
 #        return render(request, 'stock_member/stock_login.html', {'form':form})
 
 
-@login_required()
+@login_required
 def Userlist(request):
     userlists = User.objects.all()
     return render(request, 'stock_member/userlist.html', {'userlists':userlists})
@@ -181,7 +191,7 @@ def RegisterResult(request):
     return render(request, 'stock_member/stock_register_success.html', {'userlists':userlists})
 
 
-@login_required()
+@login_required
 def Login_success(request):
     userlists = User.objects.all().order_by('-id')[:1]
     return render(request, 'stock_member/stock_login_success.html', {'userlists':userlists})

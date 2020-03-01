@@ -1,0 +1,8 @@
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <strong>탈퇴하시려면 아래의 탈퇴 버튼을 눌러주세요</strong><br/>
+    <br/>
+    <input type="submit"  value="탈퇴">
+</form>
+{% endblock %}
