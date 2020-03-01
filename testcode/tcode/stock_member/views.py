@@ -13,6 +13,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth import login, authenticate
 from django.contrib import auth
 
+
 ## 회원가입 후 메일 발송처리
 def mailer():
     userlists = User.objects.all().order_by('-id')[:1]
@@ -70,8 +71,6 @@ def register(request):
 #        form = LoginForm()
 #        return render(request, 'stock_member/stock_login.html', {'form':form})
 #    return render(request, 'stock_member/stock_login.html')
-
-
 
 
 ###세션기반 로그인 인증
@@ -157,10 +156,11 @@ def myinfo(request):
 
 
 ###@login_required
+
 def getout(request):
-    #getout_pk = request.session['username']
-    if request.method == 'POST':
-        request.user.delete()
+    delete_pk = request.session['username']
+    if delete_pk:
+        delete_user = request.user.delete()
     return render(request, 'stock_member/stock_member_delete.html')
 
 
